@@ -51,7 +51,7 @@
                                         </a>
                                         @endcan 
                                         @can('delete version')
-                                        <a href="{{ url("admin/version/".$User['id']."/delete") }}" class="btn btn-danger btn-sm">
+                                        <a href="{{ url("admin/user/".$User['id']."/delete") }}" class="btn btn-danger btn-sm">
                                             <i class="fas fa-trash-alt"></i>
                                         </a>
                                         @endcan                                                           
