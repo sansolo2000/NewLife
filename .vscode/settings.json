@@ -1,0 +1,6 @@
+{
+    "php.validate.enable": true,
+    "php.validate.executablePath": "C:/laragon/bin/php/php-7.1.14-Win32-VC14-x64/php.exe",
+    "php.validate.run": "onType",
+    "html.validate.styles": false,
+}
