@@ -29,6 +29,7 @@ class UserController extends Controller
                         ->orderBy('users.id', 'asc')
                         ->get()
                         ->toArray();
+                        
         $IdUsers = '';
         $UserNew = array();
         foreach ($UserShow as $User){
@@ -89,7 +90,8 @@ class UserController extends Controller
                 $TipoJiraUser->save();
             }
         }
-        return redirect()->route('admin.user.index')->with('success', 'A user was created.');
+
+        return redirect('admin/user')->with('success', 'A user was created.');
     }
 
     public function show($id)
@@ -197,15 +199,20 @@ class UserController extends Controller
         }
 
         return redirect('admin/user')
-        ->with('success', 'EL usuario ha sido actualizado.');
+        ->with('success', 'El usuario ha sido actualizado.');
     }
 
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        if(auth()->id() === $user->id) {
+        $UserDelete = User::FindOrFail($id);
+        $TipoJiraUser = TipoJiraUser::where('user_id', $id);
+        $TipoJiraUser->delete();
+
+
+        if(auth()->id() === $id) {
             return back()->withErrors('You cannot delete current logged in user.');
         }
-        $user->delete();
-        return redirect()->route('admin.user.index')->with('success', 'A user was deleted.');
+        $UserDelete->delete();
+        return redirect('admin/user')->with('success', 'A user was deleted.');
     }
 }

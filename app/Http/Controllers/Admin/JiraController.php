@@ -60,11 +60,12 @@ class JiraController extends Controller
             ->join('jiras_acciones', 'jiras_acciones.jira_id', '=', 'jiras.jira_id')
             ->join('tipo_acciones_jiras', 'tipo_acciones_jiras.tiaj_id', '=', 'jiras_acciones.tiaj_id')
             ->join('tipo_estados','jiras.ties_id', '=', 'tipo_estados.ties_id')
-            ->join('versiones','jiras.vers_id', '=', 'versiones.vers_id')
-            ->wherein('jiras_acciones.jiac_id', $jiac_ids
-                        )
+            ->join('versiones','jiras.vers_id', '=', 'versiones.vers_id');
+            if (isset($jiac_ids)){
+                $jiras = $jiras->wherein('jiras_acciones.jiac_id', $jiac_ids);
+            }
         //    ->toSql();
-            ->get();
+        $jiras = $jiras->get();
         //print_f($jiras);
         return view('admin.jira.index', compact('jiras'));
     }

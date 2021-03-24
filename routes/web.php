@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes(['register' => false]);
 
 Route::get('/{area?}', 'Admin\DashBoardController@index');
+Route::get('/admin', 'Admin\DashBoardController@index');
+Route::get('/admin/{area?}', 'Admin\DashBoardController@index');
 
 
 Route::group([
@@ -74,7 +76,7 @@ Route::group([
     Route::get('/versionaccion/{vers_id}/toassign', 'VersionAccionController@toassign');
     Route::post('/versionaccion/{vers_id}/toassign', 'VersionAccionController@assigned');
 
-    Route::get('/incidente/{id}', 'incidenteController@index');
+    Route::get('/incidente/{id}', 'IncidenteController@index');
 
 
     
@@ -97,6 +99,8 @@ Route::group([
     Route::post('profile/password', 'ProfileController@updatePassword')->name('profile.update.password');
 
     Route::get('/{area?}', 'DashBoardController@index');
+    Route::get('/admin', 'DashBoardController@index');
+    Route::get('/admin/{area?}', 'DashBoardController@index');
 
 });
 
