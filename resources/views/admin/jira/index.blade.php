@@ -12,7 +12,7 @@
             @can('create jira')
             <div class="col-md-6">
                 <a href="{{ url('admin/jira/create') }}" class="btn btn-primary mb-3">
-                    <i class="fas fa-plus-circle"></i> Nuevo Prueba
+                    <i class="fas fa-plus-circle"></i> Nuevo
                 </a>
             </div>
             @endcan            
