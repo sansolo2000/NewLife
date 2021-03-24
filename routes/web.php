@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes(['register' => false]);
 
-Route::get('/{area?}', 'Admin\DashBoardController@index');
-Route::get('/admin', 'Admin\DashBoardController@index');
-Route::get('/admin/{area?}', 'Admin\DashBoardController@index');
+//Route::get('/{area?}', 'Admin\DashBoardController@index');
+//Route::get('/admin', 'Admin\DashBoardController@index');
+//Route::get('/admin/{area?}', 'Admin\DashBoardController@index');
 
 
 Route::group([
