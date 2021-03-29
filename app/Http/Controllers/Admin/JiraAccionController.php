@@ -104,13 +104,13 @@ class JiraAccionController extends Controller
         
         }
         
-        $accion = new JiraAccion();
+/*        $accion = new JiraAccion();
         $accion->jira_id = $request->jira_id;
         $accion->jiac_id = $JiraAccion->jiac_id;
         $accion->vers_id = $Jira->vers_id;
         $accion->tiaj_id = $request->tiaj_id;
         $accion->save();
-
+*/
         $EnvioCorreo = new EnvioCorreoController();
         $datos = $EnvioCorreo->EnvioCorreoJira($request->jira_id, $request->tiaj_id);
 
