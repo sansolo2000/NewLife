@@ -64,7 +64,7 @@ class JiraAccionController extends Controller
             //->toSql();
             //print_f($cantidad);
 
-        return view('admin.JiraAccion.create')
+        return view('admin.jiraaccion.create')
             ->with(compact('jira_id'))
             ->with(compact('tipo_accion_jira'))
             ->with(compact('tiaj_id'))
