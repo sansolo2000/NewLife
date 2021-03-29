@@ -14,8 +14,6 @@ use Illuminate\Support\Facades\Storage;
 use Monolog\Handler\NewRelicHandler;
 use Illuminate\Support\Str;
 use App\Http\Requests\JiraAccionRequest;
-use App\Accion;
-
 use File;
 
 class JiraAccionController extends Controller
@@ -106,7 +104,7 @@ class JiraAccionController extends Controller
         
         }
         
-        $accion = new Accion();
+        $accion = new JiraAccion();
         $accion->jira_id = $request->jira_id;
         $accion->jiac_id = $JiraAccion->jiac_id;
         $accion->vers_id = $Jira->vers_id;

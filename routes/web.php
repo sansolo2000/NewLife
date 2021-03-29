@@ -78,7 +78,15 @@ Route::group([
 
     Route::get('/incidente/{id}', 'IncidenteController@index');
 
+    Route::get('/notes/{id}', 'NotesController@index');
+    
+    Route::get('/notes/{jira_id}/new', 'NotesController@new_create');
+    Route::post('/notes/{jira_id}/new', 'NotesController@new_store');
 
+    Route::get('/notes/{id}/respond', 'NotesController@respond_create');
+    Route::post('/notes/{id}/respond', 'NotesController@respond_store');
+
+    Route::get('/notes/{id}/download', 'NotesController@download');
     
     // User Routes
     Route::get('/user', 'UserController@index');

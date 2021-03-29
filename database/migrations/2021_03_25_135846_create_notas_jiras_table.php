@@ -15,12 +15,19 @@ class CreateNotasJirasTable extends Migration
     {
         Schema::create('notas_jiras', function (Blueprint $table) {
             $table->id('noji_id');
-            $table->bigInteger('noji_padre')->nullable();
+            $table->unsignedBigInteger('jira_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('noji_padre')->nullable();
+            $table->string('noji_asunto');
             $table->text('noji_descripcion');
+            $table->timestamp('noji_fecha');
             $table->string('noji_ruta')->nullable();
-            $table->string('noji_estado');
             $table->timestamps();
         });
+        Schema::table('notas_jiras', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('jira_id')->references('jira_id')->on('jiras');
+        });        
     }
 
     /**

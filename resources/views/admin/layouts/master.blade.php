@@ -19,6 +19,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/regular.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/solid.css') }}">
+    
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
     <!-- Google Font: Source Sans Pro -->

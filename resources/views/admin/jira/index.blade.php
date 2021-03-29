@@ -60,7 +60,7 @@
                                         </a>
                                         @endcan                                
                                         @can('notes jira')
-                                        <a href="{{ url("admin/jira/$jira->jira_id/notas") }}" class="btn btn-warning btn-sm">
+                                        <a href="{{ url("admin/notes/$jira->jira_id") }}" class="btn btn-warning btn-sm">
                                             <i class="fas fa-sticky-note"></i>
                                         </a>
                                         @endcan                                
