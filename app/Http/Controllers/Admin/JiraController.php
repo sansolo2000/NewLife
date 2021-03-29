@@ -13,7 +13,8 @@ use App\TipoPrioridad;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
-use App\Http\Requests\JiraRequest;
+use App\Http\Requests\StoreJiraRequest;
+use App\Http\Requests\UpdateJiraRequest;
 use Illuminate\Support\Facades\DB;
 use App\Incidente;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -108,7 +109,7 @@ class JiraController extends Controller
                 ->with(compact('tipo_jiras'));
     }
 
-    public function store(JiraRequest $request)
+    public function store(StoreJiraRequest $request)
     {
         $user = User::findOrFail(Auth::id());
         $jira = new Jira();
@@ -359,7 +360,7 @@ class JiraController extends Controller
                         ->with($tipoMensaje, $Mensaje);
     }
 
-    public function update(JiraRequest $request, $id)
+    public function update(UpdateJiraRequest $request, $id)
     {
         $existe = Jira::where('jira_codigo', $request->jira_codigo)
                     ->where('jira_activo', true)

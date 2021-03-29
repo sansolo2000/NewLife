@@ -17,6 +17,7 @@
                 @if (!$errors->any())
                     @include('message.alert')
                 @endif
+                @include('message.alert')
                 <div class="card card-body">
                     <form action="{{ url("admin/jira/$jira->jira_id/edit") }}" method="post">
                         @csrf 
