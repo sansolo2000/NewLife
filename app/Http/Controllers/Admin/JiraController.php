@@ -43,8 +43,10 @@ class JiraController extends Controller
                                 ->select('tiji_id')
                                 ->get()
                                 ->toArray();
+//            print_f($TiposJiras->toSql());
             $JirasAcciones = $JirasAcciones->wherein('jiras.tiji_id', $TiposJiras);                        
         }    
+  //      print_f($JirasAcciones->toSql());
         $JirasAcciones = $JirasAcciones->get();
 
         $JirasAcciones = json_decode($JirasAcciones);

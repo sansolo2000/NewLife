@@ -52,9 +52,9 @@ class DashBoardController extends Controller
                             ->join('tipo_jiras', 'tipo_jiras.tiji_id', '=', 'jiras.tiji_id')
                             ->wherein('jiras_acciones.jiac_id', $MaxJiras);
             $JirasAcciones = clone $Jiras;
-            $JirasAcciones = $JirasAcciones->select('jiras_acciones.jiac_fecha', 'jiras.jira_codigo', 'jiras_acciones.jiac_descripcion')
-                                            ->where('tipo_acciones_jiras.tiaj_responsable_actual', $user->area)
-                                            ->where('jiras_acciones.jiac_fecha', '<=', Carbon::now()->subMonths(1)->toDateTimeString());
+            $JirasAcciones = $JirasAcciones->select('jiras.jira_id', 'jiras_acciones.jiac_fecha', 'jiras.jira_codigo', 'jiras_acciones.jiac_descripcion')
+                                            ->where('tipo_acciones_jiras.tiaj_responsable_siguiente', $user->area)
+                                            ->where('jiras_acciones.jiac_fecha', '>=', Carbon::now()->subMonths(1)->toDateTimeString());
             //print_f($Jiras->count());
             $VersionesAcciones = clone $Versiones;
             $VersionesAcciones = $VersionesAcciones->where('versiones.vers_id', '<>', 1)
@@ -73,9 +73,11 @@ class DashBoardController extends Controller
                 $DashBoard['Diagnostico']['Titulo'] = 'Jiras en diagnóstico';
                 $DashBoard['Construccion']['Titulo'] = 'Jiras en construcción';
                 $Jiras = $Jiras->where('jiras_acciones.user_id', '=', $user->id);
+//                print_f($Jiras->toSql());
+
                 $Total = clone $Jiras->where('tipo_acciones_jiras.tiaj_codigo', '<>', 'PASO_PRODUCCION');
                 $DashBoard['Jiras']['Cantidad'] = $Total->count();
-                $Asignadas = clone $Jiras->where('tipo_acciones_jiras.tiaj_responsable_actual', $user->area);
+                $Asignadas = clone $Jiras->where('tipo_acciones_jiras.tiaj_responsable_siguiente', $user->area);
                 $DashBoard['Asignadas']['Cantidad'] = $Asignadas->count();
                 $Diagnostico = clone $Jiras->wherein('tipo_acciones_jiras.tiaj_codigo', ['CREACION_JIRA', 
                                                                                     'SOLICITUD_INFORMACION',
@@ -108,7 +110,7 @@ class DashBoardController extends Controller
                 $Jiras = $Jiras->where('tiji_sistema', 'HN');
                 $Total = clone $Jiras->where('tipo_acciones_jiras.tiaj_codigo', '<>', 'PASO_PRODUCCION');
                 $DashBoard['Jiras']['Cantidad'] = $Total->count();
-                $Asignadas = clone $Jiras->where('tipo_acciones_jiras.tiaj_responsable_actual', $user->area);
+                $Asignadas = clone $Jiras->where('tipo_acciones_jiras.tiaj_responsable_siguiente', $user->area);
                 $DashBoard['Asignadas']['Cantidad'] = $Asignadas->count();
                 $Diagnostico = clone $Jiras->wherein('tipo_acciones_jiras.tiaj_codigo', ['CREACION_JIRA', 
                                                                                     'SOLICITUD_INFORMACION',
@@ -140,7 +142,7 @@ class DashBoardController extends Controller
                 $Versiones = $Versiones->where('tiji_sistema', 'HN')->where('versiones.vers_id', '<>', 1);
                 $Total = clone $Versiones->where('tipo_acciones_jiras.tiaj_codigo', '<>', 'PASO_PRODUCCION');
                 $DashBoard['Jiras']['Cantidad'] = $Total->distinct('versiones.vers_id')->count();
-                $Asignadas = clone $Versiones->where('tipo_acciones_jiras.tiaj_responsable_actual', $user->area);
+                $Asignadas = clone $Versiones->where('tipo_acciones_jiras.tiaj_responsable_siguiente', $user->area);
                 $DashBoard['Asignadas']['Cantidad'] = $Asignadas->distinct('versiones.vers_id')->count();
                 $Diagnostico = clone $Versiones->wherein('tipo_acciones_jiras.tiaj_codigo', ['CREACION_VERSION',
                                                                                     'ASIGNAR_JIRAS',
@@ -157,7 +159,11 @@ class DashBoardController extends Controller
             }
             if ($area == 4){
                 $VersionesAcciones = $VersionesAcciones->where('tiji_sistema', 'SAP')->get();
-                $JirasAcciones = $JirasAcciones->where('tiji_sistema', 'SAP')->get();
+                $JirasAcciones = $JirasAcciones->where('tiji_sistema', 'SAP')
+                //->toSql();
+                ->get();
+                //print_f(Carbon::now()->subMonths(1)->toDateTimeString(), false);
+                //print_f($JirasAcciones);
                 $DashBoard['Jiras']['Titulo'] = 'Jiras activos';
                 $DashBoard['Asignadas']['Titulo'] = 'Jiras asignados';
                 $DashBoard['Diagnostico']['Titulo'] = 'Jiras en diagnóstico';
@@ -166,7 +172,7 @@ class DashBoardController extends Controller
                 $Jiras = $Jiras->where('tiji_sistema', 'SAP');
                 $Total = clone $Jiras->where('tipo_acciones_jiras.tiaj_codigo', '<>', 'PASO_PRODUCCION');
                 $DashBoard['Jiras']['Cantidad'] = $Total->count();
-                $Asignadas = clone $Jiras->where('tipo_acciones_jiras.tiaj_responsable_actual', $user->area);
+                $Asignadas = clone $Jiras->where('tipo_acciones_jiras.tiaj_responsable_siguiente', $user->area);
                 $DashBoard['Asignadas']['Cantidad'] = $Asignadas->count();
                 $Diagnostico = clone $Jiras->wherein('tipo_acciones_jiras.tiaj_codigo', ['CREACION_JIRA', 
                                                                                     'SOLICITUD_INFORMACION',
@@ -199,7 +205,7 @@ class DashBoardController extends Controller
                 $Versiones = $Versiones->where('tiji_sistema', 'SAP')->where('versiones.vers_id', '<>', 1);                
                 $Total = clone $Versiones->where('tipo_acciones_jiras.tiaj_codigo', '<>', 'PASO_PRODUCCION');
                 $DashBoard['Jiras']['Cantidad'] = $Total->distinct('versiones.vers_id')->count();
-                $Asignadas = clone $Versiones->where('tipo_acciones_jiras.tiaj_responsable_actual', $user->area);
+                $Asignadas = clone $Versiones->where('tipo_acciones_jiras.tiaj_responsable_siguiente', $user->area);
                 $DashBoard['Asignadas']['Cantidad'] = $Asignadas->distinct('versiones.vers_id')->count();
                 $Diagnostico = clone $Versiones->wherein('tipo_acciones_jiras.tiaj_codigo', ['CREACION_VERSION',
                                                                                     'ASIGNAR_JIRAS',
