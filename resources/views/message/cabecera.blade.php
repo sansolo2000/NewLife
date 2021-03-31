@@ -1,4 +1,4 @@
-@isset($Cabeceras)
+@if ($Cabeceras <> '')
     @foreach ($Cabeceras as $key => $Cabecera)
         <div class="modal fade" id="cabecera-{{ $key }}">
             <div class="modal-dialog">
@@ -54,4 +54,4 @@
             <!-- /.modal-dialog -->
         </div>
     @endforeach
-@endisset
+@endif

@@ -27,7 +27,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
-                                @if (isset($Cabeceras))
+                                @if ($Cabeceras <> '')
                                     @foreach ($Cabeceras as $key => $Cabecera)
                                         <div id="card_{{$key}}" class="card card-outline card-dark collapsed-card">
                                             <div class="card-header">
@@ -50,7 +50,7 @@
                                                 <!-- /.card-tools -->
                                             </div>                                            
                                             <!-- /.card-header -->
-                                            @isset($Detalles[$key])
+                                            @if ($Detalles[$key] <> '')
                                                 @foreach ($Detalles[$key] as $key2 => $Detalle)
                                                     <div class="card-body">
                                                         <div class="row">
@@ -69,7 +69,7 @@
                                                         </div>
                                                     </div>
                                                 @endforeach
-                                            @endisset
+                                                @endif
                                             <div class="card-footer">
                                                 <a href="{{ url('admin/notes/'.$key.'/respond') }}" class="btn btn-primary mb-3">
                                                     <i class="fas fa-comments"></i> Respuesta

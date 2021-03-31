@@ -1,6 +1,6 @@
-@isset($Cabeceras)
+@if ($Cabeceras <> '')
     @foreach ($Cabeceras as $key => $Cabecera)
-        @isset($Detalles[$key])
+        @if ($Detalles[$key] <> '')
             @foreach ($Detalles[$key] as $key2 => $Detalle)
                 <div class="modal fade" id="detalle-{{ $key2 }}">
                     <div class="modal-dialog">
@@ -56,6 +56,6 @@
                     <!-- /.modal-dialog -->
                 </div>
             @endforeach
-        @endisset
+        @endif
     @endforeach
-@endisset
+@endif

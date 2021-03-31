@@ -42,10 +42,17 @@ class NotesController extends Controller
                 $Detalles[$NotaShow['noji_padre']][$NotaShow['noji_id']] = ['noji_fecha' => Carbon::parse($NotaShow['noji_fecha'])->format('d-m-Y H:i'), 'noji_asunto' => $NotaShow['noji_asunto'], 'noji_descripcion' => $NotaShow['noji_descripcion'], 'noji_ruta' => $NotaShow['noji_ruta'], 'user_name' => $NotaShow['name']];
             }
         }
+        if (!isset($Cabeceras)){
+            $Cabeceras = '';
+        }
+        if (!isset($Detalles)){
+            $Detalles = '';
+        }
+
     return view('admin.notes.index')
                             ->with(compact('Jira'))
-                            ->with(compact('Cabeceras', 'id'))
-                            ->with(compact('Detalles', 'id')); 
+                            ->with(compact('Cabeceras'))
+                            ->with(compact('Detalles')); 
     }
 
     public function new_create($jira_id){
