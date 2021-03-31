@@ -27,59 +27,63 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
-                                @if ($Cabeceras <> '')
-                                    @foreach ($Cabeceras as $key => $Cabecera)
-                                        <div id="card_{{$key}}" class="card card-outline card-dark collapsed-card">
-                                            <div class="card-header">
-                                                <div class="row">
-                                                    <div class="col-md-2 text-xs">
-                                                        {{ $Cabecera['noji_fecha'] }}
-                                                    </div>
-                                                    <div class="col-md-2 text-xs">
-                                                        {{ $Cabecera['user_name'] }}
-                                                    </div>
-                                                    <div class="col-md-8 text-xs">
-                                                        {{ $Cabecera['noji_asunto'] }}
-                                                    </div>
-                                                </div>
-                                                <div class="card-tools">
-                                                    <!-- Collapse Button -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#cabecera-{{ $key }}"><i class="fas fa-eye"></i></button>
-                                                    <button type="button" class="btn btn-default btn-sm" data-card-widget="collapse"><i class="fas fa-plus"></i></button>
-                                                </div>
-                                                <!-- /.card-tools -->
-                                            </div>                                            
-                                            <!-- /.card-header -->
-                                            @if ($Detalles[$key] <> '')
-                                                @foreach ($Detalles[$key] as $key2 => $Detalle)
-                                                    <div class="card-body">
-                                                        <div class="row">
-                                                            <div class="col-md-2 text-xs">
-                                                                {{ $Detalle['noji_fecha'] }}
-                                                            </div>
-                                                            <div class="col-md-2 text-xs">
-                                                                {{ $Detalle['user_name'] }}
-                                                            </div>
-                                                            <div class="col-md-7 text-xs">
-                                                                {{ $Detalle['noji_asunto'] }}
-                                                            </div>
-                                                            <div class="col-md-1 text-xs">
-                                                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#detalle-{{ $key2 }}"><i class="fas fa-eye"></i></button>
-                                                            </div>
+                                @isset($Cabeceras)
+                                    @if ($Cabeceras <> '')
+                                        @foreach ($Cabeceras as $key => $Cabecera)
+                                            <div id="card_{{$key}}" class="card card-outline card-dark collapsed-card">
+                                                <div class="card-header">
+                                                    <div class="row">
+                                                        <div class="col-md-2 text-xs">
+                                                            {{ $Cabecera['noji_fecha'] }}
+                                                        </div>
+                                                        <div class="col-md-2 text-xs">
+                                                            {{ $Cabecera['user_name'] }}
+                                                        </div>
+                                                        <div class="col-md-8 text-xs">
+                                                            {{ $Cabecera['noji_asunto'] }}
                                                         </div>
                                                     </div>
-                                                @endforeach
-                                                @endif
-                                            <div class="card-footer">
-                                                <a href="{{ url('admin/notes/'.$key.'/respond') }}" class="btn btn-primary mb-3">
-                                                    <i class="fas fa-comments"></i> Respuesta
-                                                </a>
+                                                    <div class="card-tools">
+                                                        <!-- Collapse Button -->
+                                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#cabecera-{{ $key }}"><i class="fas fa-eye"></i></button>
+                                                        <button type="button" class="btn btn-default btn-sm" data-card-widget="collapse"><i class="fas fa-plus"></i></button>
+                                                    </div>
+                                                    <!-- /.card-tools -->
+                                                </div>                                            
+                                                <!-- /.card-header -->
+                                                @isset($Detalles[$key])
+                                                    @if ($Detalles[$key] <> '')
+                                                        @foreach ($Detalles[$key] as $key2 => $Detalle)
+                                                            <div class="card-body">
+                                                                <div class="row">
+                                                                    <div class="col-md-2 text-xs">
+                                                                        {{ $Detalle['noji_fecha'] }}
+                                                                    </div>
+                                                                    <div class="col-md-2 text-xs">
+                                                                        {{ $Detalle['user_name'] }}
+                                                                    </div>
+                                                                    <div class="col-md-7 text-xs">
+                                                                        {{ $Detalle['noji_asunto'] }}
+                                                                    </div>
+                                                                    <div class="col-md-1 text-xs">
+                                                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#detalle-{{ $key2 }}"><i class="fas fa-eye"></i></button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                    @endif
+                                                @endisset
+                                                <div class="card-footer">
+                                                    <a href="{{ url('admin/notes/'.$key.'/respond') }}" class="btn btn-primary mb-3">
+                                                        <i class="fas fa-comments"></i> Respuesta
+                                                    </a>
+                                                </div>
                                             </div>
-                                        </div>
-                                    @endforeach
-                                @else
-                                    No hay comentarios.
-                                @endif
+                                        @endforeach
+                                    @else
+                                        No hay comentarios.
+                                    @endif
+                                @endisset
                             </div>
                         </div>
                     </div>
