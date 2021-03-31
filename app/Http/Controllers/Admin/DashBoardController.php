@@ -72,7 +72,6 @@ class DashBoardController extends Controller
                 $DashBoard['Asignadas']['Titulo'] = 'Jiras asignados';
                 $DashBoard['Diagnostico']['Titulo'] = 'Jiras en diagnóstico';
                 $DashBoard['Construccion']['Titulo'] = 'Jiras en construcción';
-                $Jiras = $Jiras->where('jiras_acciones.user_id', '=', $user->id);
 //                print_f($Jiras->toSql());
 
                 $Total = clone $Jiras->where('tipo_acciones_jiras.tiaj_codigo', '<>', 'PASO_PRODUCCION');

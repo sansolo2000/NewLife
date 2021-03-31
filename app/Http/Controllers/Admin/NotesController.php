@@ -44,8 +44,8 @@ class NotesController extends Controller
         }
     return view('admin.notes.index')
                             ->with(compact('Jira'))
-                            ->with(compact('Cabeceras'))
-                            ->with(compact('Detalles')); 
+                            ->with(compact('Cabeceras', 'id'))
+                            ->with(compact('Detalles', 'id')); 
     }
 
     public function new_create($jira_id){

@@ -186,7 +186,7 @@ class JiraController extends Controller
                         ->whereNotIn('tipo_acciones_jiras.tiaj_codigo', ['PRUEBAS_REGRESIVAS', 'PASO_PRODUCCION'])
                         ->select('jiras.jira_id', 'jiras.jira_codigo', 'jiras.jira_asunto', 'jiras.jira_descripcion', 
                                 'tipo_responsables.tire_nombre', 'tipo_prioridades.tipr_nombre', 
-                                'versiones.vers_nombre', 'tipo_estados.ties_nombre', 
+                                'versiones.vers_nombre', 'tipo_estados.ties_nombre', 'tipo_jiras.tiji_sistema', 
                                 'tipo_jiras.tiji_nombre', 'jiras.jira_fecha', 'users.name as user_nombre',
                                 'tipo_acciones_jiras.tiaj_responsable_siguiente', 'tipo_acciones_jiras.tiaj_responsable_actual',
                                 'jiras.jira_reportado')

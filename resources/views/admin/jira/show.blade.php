@@ -66,7 +66,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tipo de jira:</label>
-                                        <input type="text" name="tiji_nombre" value="{{ $jira->tiji_nombre }}" class="form-control" disabled>
+                                        <input type="text" name="tiji_nombre" value="{{$jira->tiji_sistema }} - {{ $jira->tiji_nombre }}" class="form-control" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
